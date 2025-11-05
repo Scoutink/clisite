@@ -1,58 +1,501 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>StratusIQ Studio Website Content Reference</title>
-</head>
-<body>
-  <h1>StratusIQ Studio — Consulting, Marketing &amp; Web Development</h1>
-  <p>This document mirrors the narrative content implemented on the live site.</p>
-  <h2>Hero</h2>
-  <ul>
-    <li>Eyebrow: Consulting • Marketing • Web Development</li>
-    <li>Headline: StratusIQ turns complex product stories into scalable demand.</li>
-    <li>Lede: From board-level strategy to go-live execution, StratusIQ Studio partners with founders and revenue teams to launch data-backed marketing and conversion-ready web experiences that deploy seamlessly through Plesk.</li>
-    <li>Primary CTA: Plan your roadmap</li>
-    <li>Secondary CTA: See our services</li>
-    <li>Stats: 190% average MRR growth within the first two quarters; 42 markets launched; 28-day median release timeline.</li>
-  </ul>
-  <h2>Services</h2>
-  <ol>
-    <li>
-      <strong>Growth &amp; Transformation Consulting</strong> — Executive-level strategic support... (North star positioning, Revenue modeling, Leadership enablement).
-    </li>
-    <li>
-      <strong>Integrated Marketing Systems</strong> — Demand engines blending storytelling, paid media, lifecycle automation... (Messaging playbooks, Lifecycle journeys, Performance analytics).
-    </li>
-    <li>
-      <strong>Product &amp; Web Engineering</strong> — High-velocity product and web development tuned for scale... (User research, Accessible builds, Documentation &amp; Plesk support).
-    </li>
-  </ol>
-  <h2>Recent Wins</h2>
-  <ul>
-    <li>Series B SaaS — Stabilized churn and unlocked 2.4× expansion revenue (FinOps Platform • 14-week program).</li>
-    <li>Brand Narrative — Raised conversion rate 310% with a repositioned product story (AI Security • 7-week sprint).</li>
-    <li>Web Experience — Launched composable web ecosystem scoring 95+ on Lighthouse (Logistics Network • 9-week build).</li>
-  </ul>
-  <h2>Approach</h2>
-  <p>01 Discover · 02 Align · 03 Build · 04 Amplify.</p>
-  <h2>Case Studies</h2>
-  <ul>
-    <li>Vertex Signal — Market entry for industrial AI (163% qualified opportunities, 46-day sales cycle, Plesk pipeline in 4 weeks).</li>
-    <li>Orbital Commerce — Unified omnichannel journeys (3.6× repeat purchases, NPS 58, scaled to 24 countries).</li>
-    <li>Helios Grid — Enterprise web replatform (4.2× inbound leads, onboarding time down 52%, accessibility 98/100).</li>
-  </ul>
-  <h2>Testimonials</h2>
-  <ul>
-    <li>Isla Romero, Chief Growth Officer, Vertex Signal.</li>
-    <li>Grant Ellis, VP Marketing, Orbital Commerce.</li>
-    <li>Priya Natarajan, Chief Product Officer, Helios Grid.</li>
-  </ul>
-  <h2>Metrics</h2>
-  <p>Average ROI 5.7× · Launch cadence every 14 days · Experience uptime 99.995% · Automation coverage 82%.</p>
-  <h2>Contact</h2>
-  <p>Eyebrow: Ready to move. Headline: Schedule a blueprint workshop. Copy emphasises sharing milestones; budget options updated to include $100K–$200K and $200K+. Global availability includes New York, Amsterdam, Singapore, Melbourne. Core tools: HubSpot, Marketo, Framer, Webflow, Next.js, Notion, Linear, Segment, Mixpanel.</p>
-  <h2>Footer</h2>
-  <p>Brand: StratusIQ Studio. Tagline: Consulting, marketing, and web development for operators architecting the next wave of category leaders.</p>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>StratusIQ Studio • Content Architecture</title>
+    <link
+      rel="preconnect"
+      href="https://fonts.googleapis.com"
+    />
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg-gradient: radial-gradient(circle at 20% 20%, rgba(147, 86, 255, 0.35), transparent 45%),
+          radial-gradient(circle at 80% 0%, rgba(0, 193, 253, 0.35), transparent 55%),
+          linear-gradient(135deg, #050510 0%, #050b21 50%, #020205 100%);
+        --surface-glass: rgba(10, 16, 34, 0.72);
+        --surface-border: rgba(147, 86, 255, 0.35);
+        --text-primary: #f4f7ff;
+        --text-muted: rgba(244, 247, 255, 0.68);
+        --accent: #69fff6;
+        --accent-secondary: #b788ff;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: "Space Grotesk", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        color: var(--text-primary);
+        background: #030310;
+        overflow-x: hidden;
+      }
+
+      canvas#bg-canvas {
+        position: fixed;
+        inset: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: -2;
+      }
+
+      .gradient-overlay {
+        position: fixed;
+        inset: 0;
+        background: var(--bg-gradient);
+        filter: saturate(115%) contrast(105%);
+        z-index: -1;
+      }
+
+      header {
+        padding: clamp(2rem, 3vw + 1rem, 4rem) clamp(1.5rem, 5vw, 6rem) 0;
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+      }
+
+      header span.eyebrow {
+        font-family: "Space Mono", monospace;
+        letter-spacing: 0.32em;
+        text-transform: uppercase;
+        font-size: 0.75rem;
+        color: var(--accent-secondary);
+        opacity: 0.9;
+      }
+
+      header h1 {
+        margin: 0;
+        font-size: clamp(2.5rem, 5vw, 3.75rem);
+        font-weight: 600;
+        letter-spacing: -0.03em;
+        max-width: 18ch;
+      }
+
+      header p {
+        max-width: 60ch;
+        color: var(--text-muted);
+        font-size: clamp(1rem, 1vw + 0.9rem, 1.2rem);
+        line-height: 1.6;
+      }
+
+      main {
+        padding: 0 clamp(1.5rem, 5vw, 6rem) clamp(4rem, 10vw, 7rem);
+        display: grid;
+        gap: clamp(1.5rem, 3vw, 2.75rem);
+      }
+
+      section {
+        border-radius: 22px;
+        padding: clamp(1.75rem, 2vw + 1rem, 2.75rem);
+        background: var(--surface-glass);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        backdrop-filter: blur(24px);
+        box-shadow: 0 25px 45px rgba(4, 10, 28, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+        position: relative;
+        overflow: hidden;
+        transition: transform 0.6s ease, border-color 0.6s ease;
+      }
+
+      section::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(135deg, rgba(105, 255, 246, 0.08) 0%, rgba(183, 136, 255, 0.12) 50%, transparent 100%);
+        opacity: 0;
+        transition: opacity 0.6s ease;
+        pointer-events: none;
+      }
+
+      section:hover {
+        transform: translateY(-6px);
+        border-color: rgba(105, 255, 246, 0.35);
+      }
+
+      section:hover::before {
+        opacity: 1;
+      }
+
+      section h2 {
+        font-size: clamp(1.4rem, 3vw, 1.8rem);
+        margin: 0 0 1.2rem;
+        letter-spacing: -0.01em;
+        display: flex;
+        align-items: center;
+        gap: 0.65rem;
+      }
+
+      section h2 span {
+        font-family: "Space Mono", monospace;
+        font-size: 0.9rem;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+        color: var(--accent-secondary);
+      }
+
+      section h2 strong {
+        background: linear-gradient(120deg, var(--accent), var(--accent-secondary));
+        -webkit-background-clip: text;
+        color: transparent;
+      }
+
+      p, li {
+        font-size: clamp(0.95rem, 0.6vw + 0.85rem, 1.05rem);
+        line-height: 1.75;
+        color: var(--text-muted);
+      }
+
+      ul, ol {
+        margin: 0;
+        padding-left: clamp(1.2rem, 2vw, 1.8rem);
+        display: grid;
+        gap: 0.75rem;
+      }
+
+      .metrics-grid {
+        display: grid;
+        gap: 1rem;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        margin-top: 1.5rem;
+      }
+
+      .metric {
+        padding: 1.25rem 1.5rem;
+        border-radius: 18px;
+        background: rgba(12, 20, 42, 0.85);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        display: grid;
+        gap: 0.4rem;
+      }
+
+      .metric span.value {
+        font-size: 1.65rem;
+        font-weight: 600;
+        letter-spacing: -0.02em;
+        color: var(--text-primary);
+      }
+
+      .metric span.label {
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 0.18em;
+        font-family: "Space Mono", monospace;
+        color: rgba(244, 247, 255, 0.7);
+      }
+
+      .contact-grid {
+        display: grid;
+        gap: 1.2rem;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        margin-top: 1.5rem;
+      }
+
+      .contact-card {
+        padding: 1.5rem;
+        border-radius: 18px;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        background: rgba(12, 18, 34, 0.65);
+        display: grid;
+        gap: 0.8rem;
+      }
+
+      .contact-card h3 {
+        margin: 0;
+        font-size: 1.1rem;
+        color: var(--text-primary);
+      }
+
+      footer {
+        padding: clamp(2.5rem, 6vw, 3.5rem) clamp(1.5rem, 5vw, 6rem) 4rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.6rem;
+        color: rgba(244, 247, 255, 0.75);
+        font-size: 0.95rem;
+      }
+
+      footer strong {
+        font-weight: 600;
+        letter-spacing: 0.04em;
+      }
+
+      .tagline {
+        font-family: "Space Mono", monospace;
+        text-transform: uppercase;
+        letter-spacing: 0.28em;
+        color: rgba(244, 247, 255, 0.6);
+        font-size: 0.75rem;
+      }
+
+      .divider {
+        height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.18), transparent);
+        margin: 0.5rem 0 1.5rem;
+      }
+
+      .glow-ring {
+        position: absolute;
+        inset: auto auto -80px -60px;
+        width: 220px;
+        height: 220px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(105, 255, 246, 0.25) 0%, transparent 70%);
+        filter: blur(6px);
+        z-index: -1;
+      }
+
+      .glow-ring.right {
+        inset: -70px -90px auto auto;
+        background: radial-gradient(circle, rgba(183, 136, 255, 0.32) 0%, transparent 65%);
+      }
+
+      @media (max-width: 720px) {
+        header {
+          padding-bottom: 1.5rem;
+        }
+
+        section h2 {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .metrics-grid {
+          grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="bg-canvas"></canvas>
+    <div class="gradient-overlay"></div>
+    <header>
+      <span class="eyebrow">StratusIQ Studio Content Deck</span>
+      <h1>Consulting, marketing, and web development narrative map.</h1>
+      <p>
+        Every element below mirrors the content deployed on the StratusIQ Studio experience. Use this structured deck to align messaging,
+        validate storytelling fidelity, and ensure handoffs into design or development (including direct Plesk publication) remain seamless.
+      </p>
+    </header>
+    <main>
+      <section>
+        <div class="glow-ring"></div>
+        <h2><span>01</span><strong>Hero Architecture</strong></h2>
+        <ul>
+          <li><strong>Eyebrow:</strong> Consulting • Marketing • Web Development</li>
+          <li><strong>Headline:</strong> StratusIQ turns complex product stories into scalable demand.</li>
+          <li>
+            <strong>Lede:</strong> From board-level strategy to go-live execution, StratusIQ Studio partners with founders and revenue teams to launch
+            data-backed marketing and conversion-ready web experiences that deploy seamlessly through Plesk.
+          </li>
+          <li><strong>Primary CTA:</strong> Plan your roadmap</li>
+          <li><strong>Secondary CTA:</strong> See our services</li>
+          <li>
+            <strong>Stats:</strong> 190% average MRR growth within the first two quarters · 42 markets launched · 28-day median release timeline
+          </li>
+        </ul>
+      </section>
+      <section>
+        <div class="glow-ring right"></div>
+        <h2><span>02</span><strong>Service Pillars</strong></h2>
+        <ol>
+          <li>
+            <strong>Growth &amp; Transformation Consulting</strong> — Executive-level strategic support (North star positioning, revenue modeling, leadership
+            enablement).
+          </li>
+          <li>
+            <strong>Integrated Marketing Systems</strong> — Demand engines blending storytelling, paid media, lifecycle automation (Messaging playbooks, lifecycle
+            journeys, performance analytics).
+          </li>
+          <li>
+            <strong>Product &amp; Web Engineering</strong> — High-velocity product and web development tuned for scale (User research, accessible builds, documentation
+            &amp; Plesk support).
+          </li>
+        </ol>
+      </section>
+      <section>
+        <h2><span>03</span><strong>Recent Wins</strong></h2>
+        <ul>
+          <li>Series B SaaS — Stabilized churn and unlocked 2.4× expansion revenue (FinOps Platform • 14-week program).</li>
+          <li>Brand Narrative — Raised conversion rate 310% with a repositioned product story (AI Security • 7-week sprint).</li>
+          <li>Web Experience — Launched composable web ecosystem scoring 95+ on Lighthouse (Logistics Network • 9-week build).</li>
+        </ul>
+      </section>
+      <section>
+        <h2><span>04</span><strong>Approach Cadence</strong></h2>
+        <p>01 Discover · 02 Align · 03 Build · 04 Amplify.</p>
+      </section>
+      <section>
+        <div class="glow-ring"></div>
+        <h2><span>05</span><strong>Case Studies</strong></h2>
+        <ul>
+          <li>Vertex Signal — Market entry for industrial AI (163% qualified opportunities, 46-day sales cycle, Plesk pipeline in 4 weeks).</li>
+          <li>Orbital Commerce — Unified omnichannel journeys (3.6× repeat purchases, NPS 58, scaled to 24 countries).</li>
+          <li>Helios Grid — Enterprise web replatform (4.2× inbound leads, onboarding time down 52%, accessibility 98/100).</li>
+        </ul>
+      </section>
+      <section>
+        <div class="glow-ring right"></div>
+        <h2><span>06</span><strong>Testimonials</strong></h2>
+        <ul>
+          <li>Isla Romero, Chief Growth Officer, Vertex Signal.</li>
+          <li>Grant Ellis, VP Marketing, Orbital Commerce.</li>
+          <li>Priya Natarajan, Chief Product Officer, Helios Grid.</li>
+        </ul>
+      </section>
+      <section>
+        <h2><span>07</span><strong>Performance Metrics</strong></h2>
+        <div class="metrics-grid">
+          <div class="metric">
+            <span class="value">5.7×</span>
+            <span class="label">Average ROI</span>
+          </div>
+          <div class="metric">
+            <span class="value">14 Days</span>
+            <span class="label">Launch Cadence</span>
+          </div>
+          <div class="metric">
+            <span class="value">99.995%</span>
+            <span class="label">Experience Uptime</span>
+          </div>
+          <div class="metric">
+            <span class="value">82%</span>
+            <span class="label">Automation Coverage</span>
+          </div>
+        </div>
+      </section>
+      <section>
+        <div class="glow-ring"></div>
+        <h2><span>08</span><strong>Contact Blueprint</strong></h2>
+        <p>
+          Eyebrow: Ready to move. Headline: Schedule a blueprint workshop. Copy emphasises sharing milestones; budget options updated to include $100K–$200K
+          and $200K+. Global availability includes New York, Amsterdam, Singapore, Melbourne. Core tools: HubSpot, Marketo, Framer, Webflow, Next.js, Notion,
+          Linear, Segment, Mixpanel.
+        </p>
+        <div class="contact-grid">
+          <div class="contact-card">
+            <h3>Global Availability</h3>
+            <p>New York · Amsterdam · Singapore · Melbourne</p>
+          </div>
+          <div class="contact-card">
+            <h3>Investment Range</h3>
+            <p>$100K–$200K · $200K+</p>
+          </div>
+          <div class="contact-card">
+            <h3>Core Toolchain</h3>
+            <p>HubSpot, Marketo, Framer, Webflow, Next.js, Notion, Linear, Segment, Mixpanel</p>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer>
+      <div class="divider"></div>
+      <strong>StratusIQ Studio</strong>
+      <span class="tagline">Consulting, marketing, and web development for operators architecting the next wave of category leaders.</span>
+      <span>© <span id="year"></span> StratusIQ Studio. All rights reserved.</span>
+    </footer>
+
+    <script type="module">
+      import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js";
+
+      const canvas = document.getElementById("bg-canvas");
+      const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+      camera.position.z = 42;
+
+      const particleCount = 1400;
+      const positions = new Float32Array(particleCount * 3);
+      const scales = new Float32Array(particleCount);
+
+      for (let i = 0; i < particleCount; i++) {
+        const i3 = i * 3;
+        positions[i3] = (Math.random() - 0.5) * 120;
+        positions[i3 + 1] = (Math.random() - 0.5) * 120;
+        positions[i3 + 2] = (Math.random() - 0.5) * 120;
+        scales[i] = Math.random();
+      }
+
+      const geometry = new THREE.BufferGeometry();
+      geometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
+      geometry.setAttribute("scale", new THREE.BufferAttribute(scales, 1));
+
+      const material = new THREE.ShaderMaterial({
+        uniforms: {
+          uTime: { value: 0 },
+          uColorA: { value: new THREE.Color(0x69fff6) },
+          uColorB: { value: new THREE.Color(0xb788ff) }
+        },
+        vertexShader: `
+          attribute float scale;
+          uniform float uTime;
+          varying float vStrength;
+          void main() {
+            vec3 transformed = position;
+            float pulse = sin(uTime * 0.35 + position.x * 0.03) * 0.75;
+            transformed.z += pulse * 2.0;
+            vStrength = scale;
+            vec4 mvPosition = modelViewMatrix * vec4(transformed, 1.0);
+            gl_PointSize = (scale * 22.0) * (300.0 / -mvPosition.z);
+            gl_Position = projectionMatrix * mvPosition;
+          }
+        `,
+        fragmentShader: `
+          uniform vec3 uColorA;
+          uniform vec3 uColorB;
+          varying float vStrength;
+          void main() {
+            float dist = length(gl_PointCoord - vec2(0.5));
+            float alpha = smoothstep(0.5, 0.2, dist);
+            vec3 color = mix(uColorA, uColorB, vStrength);
+            gl_FragColor = vec4(color, alpha * 0.85);
+          }
+        `,
+        transparent: true,
+        depthWrite: false
+      });
+
+      const points = new THREE.Points(geometry, material);
+      scene.add(points);
+
+      const resize = () => {
+        const width = window.innerWidth;
+        const height = window.innerHeight;
+        renderer.setSize(width, height);
+        camera.aspect = width / height;
+        camera.updateProjectionMatrix();
+      };
+
+      resize();
+      window.addEventListener("resize", resize);
+
+      const clock = new THREE.Clock();
+
+      const animate = () => {
+        requestAnimationFrame(animate);
+        const elapsed = clock.getElapsedTime();
+        material.uniforms.uTime.value = elapsed;
+        points.rotation.y = elapsed * 0.05;
+        points.rotation.x = Math.sin(elapsed * 0.05) * 0.05;
+        renderer.render(scene, camera);
+      };
+
+      animate();
+
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </body>
 </html>
